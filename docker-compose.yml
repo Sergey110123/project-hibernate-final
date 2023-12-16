@@ -1,0 +1,36 @@
+version: "3.9"
+services:
+  mysql_db:
+    image: mysql:8
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=world
+    volumes:
+      - ./init/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  redis:
+    image: redis/redis-stack:latest
+    container_name: redis-stack
+    ports:
+      - "6379:6379"
+      - "8001:8001"
+    depends_on:
+      - mysql_db
+
+  #  app:
+  #    build: .
+  #    container_name: app
+  #    depends_on:
+  #    - mysql_db
+  #    links:
+  #    - mysql_db
+  #    - mysql_db:world
+  #    - redis
+  #    environment:
+  #      - DB_HOST=mysql
+  #      - DB_PORT=3306
+  #    ports:
+  #      - "7777:8080"
