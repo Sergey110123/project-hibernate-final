@@ -14,11 +14,10 @@ Prerequisites:
 `3. Maven`
 
 ### Installation
-1. Create 2 containers for MySQL and Redis 
-by command 'docker-compose up' in project 
-folder.
-2. Build jar-file by Maven and run it
-
+1. Clean and install by Maven
+2. Execute command 'docker-compose up' in project 
+folder. This will create and run 3 containers for MySQL, Redis and application.
+3. After successful connection to databases container with application will stop
 
 ### Results
 Redis `34 ms`

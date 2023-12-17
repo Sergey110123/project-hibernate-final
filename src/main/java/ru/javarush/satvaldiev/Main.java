@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 import static java.util.Objects.nonNull;
 
 public class Main {
+
     private final SessionFactory sessionFactory;
     private final RedisClient redisClient;
     private final ObjectMapper mapper;
@@ -82,7 +83,8 @@ public class Main {
         }
     }
     private RedisClient preparedRedisClient() {
-        RedisClient redisClient = RedisClient.create(RedisURI.create("localhost", 6379));
+        RedisClient redisClient = RedisClient.create(RedisURI.create("redis", 6379));
+//        RedisClient redisClient = RedisClient.create(RedisURI.create("localhost", 6379));
         try (StatefulRedisConnection<String, String> connection = redisClient.connect()) {
             System.out.println("\nConnected to Redis\n");
         }

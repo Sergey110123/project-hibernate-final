@@ -5,6 +5,8 @@ services:
     container_name: mysql
     ports:
       - "3306:3306"
+    expose:
+      - "3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=world
@@ -17,20 +19,28 @@ services:
     ports:
       - "6379:6379"
       - "8001:8001"
+    expose:
+      - "6379"
+      - "8001"
     depends_on:
       - mysql_db
 
-  #  app:
-  #    build: .
-  #    container_name: app
-  #    depends_on:
-  #    - mysql_db
-  #    links:
-  #    - mysql_db
-  #    - mysql_db:world
-  #    - redis
-  #    environment:
-  #      - DB_HOST=mysql
-  #      - DB_PORT=3306
-  #    ports:
-  #      - "7777:8080"
+  app:
+      build: .
+      container_name: app
+      depends_on:
+      - mysql_db
+      links:
+      - mysql_db
+      - mysql_db:world
+      - redis
+      environment:
+        - DB_HOST=mysql
+        - DB_PORT=3306
+        - Main.HOST="redis"
+      ports:
+        - "8090:8090"
+      expose:
+        - "8090"
+      restart: on-failure
+

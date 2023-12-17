@@ -41,6 +41,7 @@
             <version>2.14.0</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <!--Настройка компиляции проекта-->
@@ -92,9 +93,6 @@
 
                             <mainClass>ru.javarush.satvaldiev.Main</mainClass>
                         </manifest>
-<!--                        <manifestEntries>-->
-<!--                        <Rsrc-Class-Path>ru.javarush.satvaldiev.Main</Rsrc-Class-Path>-->
-<!--                        </manifestEntries>-->
                     </archive>
                 </configuration>
             </plugin>
